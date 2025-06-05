@@ -6,7 +6,7 @@ $tenfile = $_FILES["upfile"]["name"];
 $mang = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
 $mafile = pathinfo($tenfile, PATHINFO_EXTENSION);
 $choluutam = $_FILES["upfile"]["tmp_name"];
-$choluu = "./BAITAP6/";
+$choluu = "./BAITAP7/";
 if($_FILES["upfile"]["error"] === 0 && in_array($mafile, $mang))
 {
 move_uploaded_file($choluutam, $choluu.$tenfile);
