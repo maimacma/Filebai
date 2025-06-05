@@ -15,7 +15,7 @@
 $diachi = ".";
 $mafile = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
 $tenfile = scandir($diachi);
-$bofile = array_diff($tenfile , $array('.', '..'));
+$bofile = array_diff($tenfile , array('.', '..'));
 foreach($tenfile as $tenfiles)
 {
    $mor = pathinfo($tenfile,PATHINFO_EXTENSION); 
