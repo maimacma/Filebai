@@ -16,10 +16,10 @@ $diachi = ".";
 $mafile = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
 $tenfile = scandir($diachi);
 $bofile = array_diff($tenfile , array('.', '..'));
-foreach($tenfile as $tenfiles)
+foreach($bofile as $bofiles)
 {
-   $mor = pathinfo($tenfile,PATHINFO_EXTENSION); 
-echo $tenfiles."<br>";
+   $mor = pathinfo($tenfiles,PATHINFO_EXTENSION); 
+echo $bofiles."<br>";
 }
 ?>
     </form>
