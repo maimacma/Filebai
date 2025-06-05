@@ -18,7 +18,7 @@ $tenfile = scandir($diachi);
 $bofile = array_diff($tenfile , array('.', '..'));
 foreach($bofile as $bofiles)
 {
-   $mor = pathinfo($tenfiles,PATHINFO_EXTENSION);
+   $mor = pathinfo($tenfile,PATHINFO_EXTENSION);
    if(array_search($mor,$mafile) !== false)
    {
        echo '<option value="'.$bofiles.'">Apple</option>';
