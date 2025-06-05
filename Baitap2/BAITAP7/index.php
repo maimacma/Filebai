@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Input Example</title>
+    <title>Xem file</title>
 </head>
+<?php 
+$diachi = "./BAITAP7/";
+$mafile = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
+$tenfile = scandir($diachi);
+foreach($tenfile as $tenfiles)
+{
+echo $tenfiles."<br>";
+}
+?>
 <body>
     <form action="#" method="post">
-        <label for="userInput">Enter something:</label>
-        <input type="text" id="userInput" name="userInput">
-        <button type="submit">abc</button>
+  <label for="fruit">Chọn ảnh:</label>
+<select id="fruit" name="fruit">
+<option value="apple">Apple</option>
+</select>
     </form>
 </body>
 </html>
