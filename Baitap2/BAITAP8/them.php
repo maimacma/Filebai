@@ -1,6 +1,6 @@
 <?php
 $con = require_once("connecton.php");
-if(isset($_REQUEST($_POST['submit'])))
+if(isset($_POST['submit']))
 {
     $manv = $_POST['manv'];
     $hoten = $_POST['hoten'];
@@ -11,8 +11,8 @@ if(isset($_REQUEST($_POST['submit'])))
     if(isset($_FILES['hinh']))
     {
       $tenhinh = $_FILES['hinh']['name'];
-      $diachiam = $_FILES['hinh']["tmp_name"] ;
-      $luu = $
+      $diachitam = $_FILES['hinh']["tmp_name"] ;
+      $luu = $move_uploaded_file($diachitam, "hinh/".$tenhinh);
     }
     $luong = $_POST['luong'];
     $luong = $_POST['luong'];
