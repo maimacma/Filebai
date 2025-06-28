@@ -8,9 +8,7 @@
 <body>
     <form action="#" method="post">
   <label for="fruit">Chọn ảnh:</label>
-<select id="fruit" name="fruit">
-
-
+<select id="anh" name="anh">
 <?php 
 $diachi = ".";
 $mafile = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
