@@ -8,8 +8,8 @@
 <body>
     <form action="#" method="post">
   <label for="fruit">Chọn ảnh:</label>
-<select id="anh" name="anh">
-<?php 
+<select id="anh" name="dsanh">
+<?php
 $diachi = ".";
 $mafile = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
 $tenfile = scandir($diachi);
@@ -19,7 +19,7 @@ foreach($bofile as $bofiles)
    $mor = pathinfo($bofiles,PATHINFO_EXTENSION);
    if(array_search($mor,$mafile) !== false)
    {
-       echo '<option name="">'.$bofiles.'</option>';
+       echo '<option value="'.$bofile.'">'.$bofiles.'</option>';
    }
 
 }
