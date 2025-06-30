@@ -103,8 +103,7 @@
 
       <input type="submit" name="submit" value="Thêm nhân viên"/>
       <?php
-      // Xử lý PHP
-      $msg = '';
+      $con = require_once'connection.php';
       if(isset($_POST['submit'])) {
         $manv = $_POST['manv'];
         $hoten = $_POST['hoten'];
@@ -124,9 +123,9 @@
           }
         }
         // echo $manv. $hoten. $gioit. $ngays. $luong. $maphong;
-        
+
       }
-      if ($msg) echo $msg;
+     
       ?>
     </form>
   </div>
