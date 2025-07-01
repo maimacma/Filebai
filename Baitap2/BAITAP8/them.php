@@ -135,7 +135,13 @@ echo '<option value='.$pb['mapb'].'>'.$pb['tenpb'].'</option>';
             $msg = '<div class="msg error">Upload hình thất bại.</div>';
           }
         }
-        // echo $manv. $hoten. $gioit. $ngays. $luong. $maphong;
+       $them = 'INSERT INTO NHANVIEN VALUES ("'.$manv."','".$hoten."','".$gioit."','".$ngays."','".$luong."','".$maphong."','".$ten_hinh."')";
+        $result = mysqli_query($con, $them);
+        if ($result) {
+          echo '<div class="msg">Thêm nhân viên thành công!</div>';
+        } else {
+          echo '<div class="msg error">Lỗi khi thêm nhân viên: ' . mysqli_error($con) . '</div>';
+        }
 
       }
      
