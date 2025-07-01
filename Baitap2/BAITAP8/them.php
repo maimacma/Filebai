@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -100,7 +99,7 @@ if(isset($_SESSION['PHONGBAN']))
 {
   foreach($_SESSION['PHONGBAN'] as $pb)
   {
-echo '<option value='.$pb['mapb'].'>'.$pb['tenpb'].'</option>';
+echo '<option value="' . htmlspecialchars($pb['mapb']) . '">' . htmlspecialchars($pb['tenpb']) . '</option>';
   }
 }
 
@@ -123,7 +122,7 @@ echo '<option value='.$pb['mapb'].'>'.$pb['tenpb'].'</option>';
         $gioit = $_POST['gioitinh'];
         $ngays = $_POST['ngaysinh'];
         $luong = $_POST['luong'];
-        $maphong = $_POST['maphong'];
+        $maphong = $_POST['mapb'];
         $hinhanh = $_FILES['hinh'];
         $ten_hinh = $hinhanh['name'];
         $duongdan = 'IMG Lab04/' . basename($ten_hinh);
@@ -136,6 +135,11 @@ echo '<option value='.$pb['mapb'].'>'.$pb['tenpb'].'</option>';
           }
         }
        $them = 'INSERT INTO NHANVIEN VALUES ("'.$manv."','".$hoten."','".$gioit."','".$ngays."','".$luong."','".$maphong."','".$ten_hinh."')";
+       $kiemtr = mysqli_real_escape_string($con, $them);
+        if (!$kiemtr) {
+          echo '<div class="msg error">Lỗi khi thực hiện truy vấn: ' . mysqli_error($con) . '</div>';
+          exit;
+        } 
         $result = mysqli_query($con, $them);
         if ($result) {
           echo '<div class="msg">Thêm nhân viên thành công!</div>';
