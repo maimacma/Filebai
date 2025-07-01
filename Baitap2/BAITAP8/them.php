@@ -93,7 +93,20 @@
       <input type="text" id="luong" name="luong" required />
 
       <label for="maphong">Mã phòng:</label>
-      <input type="text" id="maphong" name="maphong" required />
+  <select name="mapb" > 
+    <option value="">Chọn phòng ban</option>
+    <?php
+if(isset($_SESSION['PHONGBAN']))
+{
+  foreach($_SESSION['PHONGBAN'] as $pb)
+  {
+echo '<option value='.$pb['mapb'].'>'.$pb['tenpb'].'</option>';
+  }
+}
+
+    ?>
+
+  </select>
 
       <label for="hinh">Tên file hình:</label>
       <input type="file" id="hinh" name="hinh" placeholder="vd: 1.jpg" />

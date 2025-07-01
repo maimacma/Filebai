@@ -8,5 +8,6 @@ while ($row = $result->fetch_assoc())
 {
     $mang[] = $row;
 }
-$_SESSION['mapb'] = $mang;
+$_SESSION['PHONGBAN'] = $mang;
+
 ?>
