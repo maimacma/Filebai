@@ -3,6 +3,10 @@ if(isset($_GET['manv']))
 {
     $manv = $_GET['manv'];
     $con = require_once 'connection.php';
+    $hnv = 'select * from NHAVIEN where MANV =?';
+    $lenh = $con ->prepare($hnv);
+    $lenh->execute([$manv]);
+    $laydsnv= $lenh->fetchAll(PDO::FETCH_ASSOC);
 }
 ?>
 <!-- filepath: /workspaces/Filebai/Baitap2/BAITAP8/them.php -->
@@ -33,10 +37,12 @@ if(isset($_GET['manv']))
 </head>
 <body>
   <div class="form-container">
-    <h2 class="form-title">Thêm Nhân Viên Mới</h2>
+    <h2 class="form-title">Sửa Nhân Viên</h2>
     <form action="them.php" method="post" enctype="multipart/form-data">
       <div class="mb-3">
-        <label for="manv" class="form-label">Mã nhân viên</label>
+        <label for="manv" class="form-label">Mã nhân viên</label><?php
+        
+        ?>
         <input type="text" class="form-control" id="manv" name="manv" required>
       </div>
       <div class="mb-3">
