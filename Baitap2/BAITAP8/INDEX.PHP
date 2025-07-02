@@ -4,7 +4,13 @@ $con = require_once("connectoin.php");
 $dulieuss = "select * from NHANVIEN";
 $dulieu = $con -> query($dulieuss);
 $dacoduieu = $dulieu->fetchAll(PDO::FETCH_ASSOC);
+$xoa = $_GET['xoa'] ?? null;
+if ($xoa === null) {
+  echo "<script>alert('Xóa thành công');</script>";
 
+}
+else 
+{echo "<script>alert('Xoá không thành công');</script>";}
 ?>
 <html lang="vi">
 <head>
