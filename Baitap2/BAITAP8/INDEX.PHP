@@ -1,31 +1,35 @@
 <!DOCTYPE html>
 <?php
-$con = require_once("connectoin.php");
-
-// Số dòng mỗi trang
+$con = require_once("connection.php");
 $rowsPerPage = 5;
-
-// Xác định trang hiện tại
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
-
-// Tính offset
 $offset = ($page - 1) * $rowsPerPage;
-
-// Lấy tổng số dòng
-$totalRows = $con->query("SELECT COUNT(*) FROM NHANVIEN")->fetchColumn();
-$totalPages = ceil($totalRows / $rowsPerPage);
-
-// Lấy dữ liệu trang hiện tại
-$dulieuss = "SELECT * FROM NHANVIEN LIMIT $rowsPerPage OFFSET $offset";
-$dulieu = $con->query($dulieuss);
-$dacoduieu = $dulieu->fetchAll(PDO::FETCH_ASSOC);
-
-$xoa = $_GET['xoa'] ?? null;
-if ($xoa === null) {
-  echo "<script>alert('Xóa thành công');</script>";
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+if ($search !== '') {
+    $stmt = $con->prepare("SELECT COUNT(*) FROM NHANVIEN WHERE HOTEN LIKE ?");
+    $stmt->execute(['%' . $search . '%']);
+    $totalRows = $stmt->fetchColumn();
 } else {
-  echo "<script>alert('Xoá không thành công');</script>";
+    $totalRows = $con->query("SELECT COUNT(*) FROM NHANVIEN")->fetchColumn();
+}
+$totalPages = ceil($totalRows / $rowsPerPage);
+if ($search !== '') {
+    $stmt = $con->prepare("SELECT * FROM NHANVIEN WHERE HOTEN LIKE ? LIMIT $rowsPerPage OFFSET $offset");
+    $stmt->execute(['%' . $search . '%']);
+    $dacoduieu = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} else {
+    $dulieuss = "SELECT * FROM NHANVIEN LIMIT $rowsPerPage OFFSET $offset";
+    $dulieu = $con->query($dulieuss);
+    $dacoduieu = $dulieu->fetchAll(PDO::FETCH_ASSOC);
+}
+$xoa = $_GET['xoa'] ?? null;
+if(isset($_GET['xoa'])){
+    if ($xoa === 'khongthanhcong') {
+        echo "<script>alert('Xóa thành công');</script>";
+    } else {
+        echo "<script>alert('Xoá không thành công');</script>";
+    }
 }
 ?>
 <html lang="vi">
@@ -43,11 +47,13 @@ if ($xoa === null) {
   </style>
 </head>
 <body>
-  <form action="them.php" method="post" >
   <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2>Danh sách nhân viên</h2>
-      <button class="btn btn-success no-print" onclick="window.print()">🖨 In bảng</button>
+      <h2>Danh sách nhân viên</h2>  
+      <form class="d-flex" method="get" action="">
+        <input class="form-control me-2" type="search" name="search" placeholder="Tìm theo tên" value="<?php echo htmlspecialchars($search); ?>">
+        <button class="btn btn-outline-primary" type="submit">Tìm kiếm</button>
+      </form>
     </div>
 
     <table class="table table-bordered table-striped">
@@ -73,7 +79,7 @@ if ($xoa === null) {
           <td><?php echo $hang['NGAYSINH']?></td>
           <td><?php echo $hang['LUONG']?></td>
           <td><?php echo $hang['MAPHONG']?></td>
-          <td><?php echo "<img src='./IMGLab04/".  $hang['HINH']. "' width='300'/>"?></td>
+          <td><?php echo "<img src='./IMGLab04/".  $hang['HINH']. "' width='100'/>"?></td>
           <td><?php echo $hang['NGAYBC']?></td>
           <td>
             <button onclick="window.location.href='sua.php?manv=<?php echo $hang['MANV']; ?>'" type="button">Sửa</button>
@@ -89,17 +95,17 @@ if ($xoa === null) {
       <ul class="pagination justify-content-center">
         <?php if($page > 1): ?>
           <li class="page-item">
-            <a class="page-link" href="?page=<?php echo $page-1; ?>">Trước</a>
+            <a class="page-link" href="?<?php echo http_build_query(array_merge($_GET, ['page' => $page-1])); ?>">Trước</a>
           </li>
         <?php endif; ?>
         <?php for($i = 1; $i <= $totalPages; $i++): ?>
           <li class="page-item <?php if($i == $page) echo 'active'; ?>">
-            <a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
+            <a class="page-link" href="?<?php echo http_build_query(array_merge($_GET, ['page' => $i])); ?>"><?php echo $i; ?></a>
           </li>
         <?php endfor; ?>
         <?php if($page < $totalPages): ?>
           <li class="page-item">
-            <a class="page-link" href="?page=<?php echo $page+1; ?>">Sau</a>
+            <a class="page-link" href="?<?php echo http_build_query(array_merge($_GET, ['page' => $page+1])); ?>">Sau</a>
           </li>
         <?php endif; ?>
       </ul>
@@ -108,7 +114,5 @@ if ($xoa === null) {
 
   </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  </form>
 </body>
 </html>
-
