@@ -25,6 +25,14 @@ foreach($bofile as $bofiles)
 }
 ?>
 </select>
+    <input type="submit" value="Xem ảnh">
+<?php
+if(isset($_POST['dsanh']))
+{
+    $anh = $_POST['dsanh'];
+    echo '<img src="'.$anh.'" alt="Ảnh" style="width: 300px; height: 300px;">';
+}
+?>  
     </form>
 </body>
 </html>

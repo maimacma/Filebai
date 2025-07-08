@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php 
 if(isset($_FILES["upfile"])&& $_POST["upload"])
 {
@@ -13,8 +12,13 @@ move_uploaded_file($choluutam, $choluu.$tenfile);
 echo "Lưu thành công file". $tenfile;
 echo "<img src='".$choluu.$tenfile."'/>";
 }
+else
+{
+    echo "Lưu không thành công file". $tenfile."vì không đúng file hoặc file rỗng hoặc không đúng định dạng";
+}
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
