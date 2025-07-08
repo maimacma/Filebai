@@ -19,7 +19,7 @@ foreach($bofile as $bofiles)
    $mor = pathinfo($bofiles,PATHINFO_EXTENSION);
    if(array_search($mor,$mafile) !== false)
    {
-       echo '<option value="'.$bofile.'">'.$bofiles.'</option>';
+       echo '<option value="'.$bofiles.'">'.$bofiles.'</option>';
    }
 
 }
