@@ -30,7 +30,7 @@ foreach($bofile as $bofiles)
 if(isset($_POST['dsanh']))
 {
     $anh = $_POST['dsanh'];
-    echo '<img src="'.$anh.'" alt="Ảnh" style="width: 300px; height: 300px;">';
+    echo '<img src="/BAITAP7/'.$anh.'" alt="Ảnh" style="width: 300px; height: 300px;">';
 }
 ?>  
     </form>
