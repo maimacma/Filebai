@@ -1,5 +1,5 @@
 <?php 
-if(isset($_FILES["upfile"])&& $_POST["upload"])
+if(isset($_FILES["upfile"])&& isset($_POST["upload"]))
 {
 $tenfile = $_FILES["upfile"]["name"];
 $mang = ["jpg", "png", "psd", "JPG", "PNG", "PSD"];
