@@ -49,5 +49,11 @@ mysqli_close($conn);
         </tr>
         <?php endforeach; ?>
     </table>
+     <div class="mt-4">
+        <a href="tths.php" class="btn btn-primary me-2">Trang Thông Tin HS</a>
+        <a href="ttcacsp.php" class="btn btn-secondary me-2">Thông tin các sản phẩm</a>
+        <a href="ttkh.php" class="btn btn-success me-2">Thông tin khách hàng</a>
+        <a href="ttsua.php" class="btn btn-warning">Thông tin sữa</a>
+    </div>
 </body>
 </html>

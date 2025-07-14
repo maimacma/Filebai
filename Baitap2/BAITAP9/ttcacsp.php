@@ -37,3 +37,14 @@ $rs = $sql1->fetchAll(PDO::FETCH_ASSOC);
             }
             ?>
         </tbody>
+    </table>
+    <div class="mt-4">
+        <a href="tths.php" class="btn btn-primary me-2">Trang
+        <a href="ttcacsp.php" class="btn btn-secondary me-2">Thông tin các sản phẩm</a>
+        <a href="ttkh.php" class="btn btn-success me-2">Thông tin khách hàng</a>
+        <a href="ttsua.php" class="btn btn-warning">Thông tin sữa</a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

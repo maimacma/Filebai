@@ -64,6 +64,9 @@ $dl = $dotim2->fetch_all(PDO::FETCH_ASSOC);
     </style>
 </head>
 <body>
+(       <a href="ttsua.php<?php if(isset($row['MAKH']) && !empty($row['MAKH'])) {
+            echo '?makh=' . urlencode($row['MAKH'] .'');   
+       }?>" class="btn btn-warning">Thông tin sữa</a>
     <h2>Bảng Thông Tin Khách Hàng</h2>
     <table>
         <tr>
