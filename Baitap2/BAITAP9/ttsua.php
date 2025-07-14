@@ -40,12 +40,12 @@ mysqli_close($conn);
         </tr>
         <?php foreach ($suaList as $sua): ?>
         <tr>
-            <td><?php echo htmlspecialchars($sua['Ma_sua']); ?></td>
-            <td><?php echo htmlspecialchars($sua['Ten_sua']); ?></td>
-            <td><?php echo htmlspecialchars($sua['Hang_sua']); ?></td>
-            <td><?php echo htmlspecialchars($sua['Loai_sua']); ?></td>
-            <td><?php echo htmlspecialchars($sua['Trong_luong']); ?></td>
-            <td><?php echo htmlspecialchars($sua['Don_gia']); ?></td>
+            <td><?php echo htmlspecialchars($sua['MASUA']); ?></td>
+            <td><?php echo htmlspecialchars($sua['TENSUA']); ?></td>
+            <td><?php echo htmlspecialchars($sua['HANGSUA']); ?></td>
+            <td><?php echo htmlspecialchars($sua['LOAISUA']); ?></td>
+            <td><?php echo htmlspecialchars($sua['TRONGLUONG']); ?></td>
+            <td><?php echo htmlspecialchars($sua['DONGIA']); ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
