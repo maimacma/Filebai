@@ -1,3 +1,9 @@
+<?php
+$con = require_once 'connection.php';
+$dotim = "SELECT * FROM KHACHHANG";
+$dotim2 = $con->query($dotim);
+$dl = $dotim2->fetch_all(PDO::FETCH_ASSOC);
+?>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -67,27 +73,24 @@
             <th>Số Điện Thoại</th>
             <th>Địa Chỉ</th>
         </tr>
-        <tr>
-            <td>1</td>
-            <td>Nguyễn Văn A</td>
-            <td>vana@gmail.com</td>
-            <td>0901234567</td>
-            <td>Hà Nội</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>Trần Thị B</td>
-            <td>thib@gmail.com</td>
-            <td>0912345678</td>
-            <td>TP. Hồ Chí Minh</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>Lê Văn C</td>
-            <td>vanc@gmail.com</td>
-            <td>0923456789</td>
-            <td>Đà Nẵng</td>
-        </tr>
+        <?php
+        foreach ($dl as $index => $row) {
+            echo "<tr>";
+            echo "<td>" . ($index + 1) . "</td>";
+            echo "<td>" . htmlspecialchars($row['HOTEN']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['EMAIL']) . "</td>";   
+            echo "<td>" . htmlspecialchars($row['SODIENTHOAI']) . "</td>";
+            echo "<td>" . htmlspecialchars($row['DIACHI']) . "</td>";
+            echo "</tr>";
+        }
+        ?>
     </table>
+        </table>
+    <div class="mt-4">
+        <a href="tths.php" class="btn btn-primary me-2">Trang Thông Tin HS</a>
+        <a href="ttcacsp.php" class="btn btn-secondary me-2">Thông tin các sản phẩm</a>
+        <a href="ttkh.php" class="btn btn-success me-2">Thông tin khách hàng</a>
+        <a href="ttsua.php" class="btn btn-warning">Thông tin sữa</a>
+    </div>
 </body>
 </html>
