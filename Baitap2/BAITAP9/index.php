@@ -1,3 +1,4 @@
 <?php
-header("localhost:tths.php");
+header("Location: tths.php");
+exit;
 ?>

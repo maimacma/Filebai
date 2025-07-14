@@ -3,22 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <title>Thông Tin Khách Hàng</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
     <style>
-        table {
-            border-collapse: collapse;
-            width: 60%;
-            margin: 30px auto;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
+        body {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: 'Roboto', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         h2 {
             text-align: center;
+            margin-top: 40px;
+            color: #2d3e50;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+        table {
+            border-collapse: collapse;
+            width: 70%;
+            margin: 40px auto;
+            box-shadow: 0 8px 24px rgba(44, 62, 80, 0.12);
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+        }
+        th {
+            background: linear-gradient(90deg, #6dd5ed 0%, #2193b0 100%);
+            color: #fff;
+            font-size: 1.08em;
+            font-weight: 700;
+            border: none;
+        }
+        tr {
+            transition: background 0.2s;
+        }
+        tr:nth-child(even) td {
+            background: #f7fbfc;
+        }
+        tr:hover td {
+            background: #eaf6fb;
+        }
+        td {
+            border-bottom: 1px solid #e0eafc;
+            font-size: 1em;
+            color: #34495e;
+        }
+        tr:last-child td {
+            border-bottom: none;
         }
     </style>
 </head>
