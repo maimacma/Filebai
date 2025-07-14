@@ -1,0 +1,56 @@
+-- Tạo cơ sở dữ liệu
+CREATE DATABASE IF NOT EXISTS QUANLYSUA;
+USE QUANLYSUA;
+
+-- Bảng HÃNG SỮA
+CREATE TABLE HANGSUA (
+    MAHS VARCHAR(10) PRIMARY KEY,
+    TENHANGSUA VARCHAR(100),
+    DIACHI VARCHAR(200),
+    DIENTHOAI VARCHAR(20),
+    EMAIL VARCHAR(100)
+);
+
+INSERT INTO HANGSUA VALUES
+('VNM', 'Vinamilk', '123 Nguyễn Du - Quận 1 - TP.HCM', '8794561', 'vinamilk@vnm.com'),
+('NTF', 'Nutifood', 'Khu công nghiệp Sóng Thần Bình Dương', '7895632', 'nutifood@ntf.com'),
+('AB', 'Abbott', 'Công ty nhập khẩu Việt Nam', '8741258', 'abbott@ab.com'),
+('DS', 'Daisy', 'Khu công nghiệp Sóng Thần Bình Dương', '5789321', 'daisy@ds.com'),
+('DL', 'Dutch Lady', 'Khu công nghiệp Biên Hòa - Đồng Nai', '7826451', 'dutchlady@dl.com'),
+('DM', 'Dumex', 'Khu công nghiệp Sóng Thần Bình Dương', '6258943', 'dumex@dm.com'),
+('MJ', 'Mead Jonhson', 'Công ty nhập khẩu Việt Nam', '8741258', 'meadjohn@mj.com');
+
+-- Bảng SỮA
+CREATE TABLE SUA (
+    MASUA INT AUTO_INCREMENT PRIMARY KEY,
+    TENSUA VARCHAR(100),
+    HANGSUA VARCHAR(100),
+    LOAISUA VARCHAR(50),
+    TRONGLUONG VARCHAR(50),
+    DONGIA VARCHAR(50)
+);
+
+INSERT INTO SUA (TENSUA, HANGSUA, LOAISUA, TRONGLUONG, DONGIA) VALUES
+('Fristi', 'Dutch Lady', 'Sữa tươi', '180 gram', '3.600 VNĐ'),
+('Sữa chua Plus', 'Vinamilk', 'Sữa chua', '120 gram', '4.000 VNĐ'),
+('Sữa chua Cô Gái Hà Lan', 'Dutch Lady', 'Sữa chua', '100 gram', '3.000 VNĐ'),
+('Sữa chua uống Cô Gái Hà Lan', 'Dutch Lady', 'Sữa chua', '110 gram', '2.500 VNĐ'),
+('Dielac Sure', 'Vinamilk', 'Sữa bột', '400 gram', '90.000 VNĐ');
+
+-- Bảng KHÁCH HÀNG
+CREATE TABLE KHACHHANG (
+    MAKH VARCHAR(10) PRIMARY KEY,
+    TENKHACHHANG VARCHAR(100),
+    GIOITINH VARCHAR(10),
+    DIACHI VARCHAR(200),
+    SODIENTHOAI VARCHAR(20)
+);
+
+INSERT INTO KHACHHANG VALUES
+('KH001', 'Khuất Thùy Phương', 'NỮ', 'A21 Nguyễn Oanh quận Gò Vấp', '9874125'),
+('KH002', 'Đỗ Lâm Thiên', 'NAM', '357 Lê Hồng Phong Q.10', '8351056'),
+('KH003', 'Phạm Thị Nhung', 'NỮ', '56 Đinh Tiên Hoàng quận 1', '9745698'),
+('KH004', 'Nguyễn Khắc Thiện', 'NAM', '12bis Đường 3-2 quận 10', '8769128'),
+('KH005', 'Tô Trần Hồ Giang', 'NAM', '75 Nguyễn Kiệm quận Gò Vấp', '5792564'),
+('KH006', 'Nguyễn Kiến Thi', 'NAM', '357 Lê Hồng Phong Q.10', '9874125'),
+('KH008', 'Nguyễn Anh Tuấn', 'NAM', '1/2bis Nơ Trang Long Q.BT TP.HCM', '8753159');
