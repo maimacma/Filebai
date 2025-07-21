@@ -96,27 +96,30 @@ foreach ($kq as $row) {
 </head>
 <body>
     <h2>Danh Sách Thông Tin Sữa</h2>
-    <table>
-        <tr>
-            <th>Mã Sữa</th>
-            <th>Tên Sữa</th>
-            <th>Hãng Sữa</th>
-            <th>Loại Sữa</th>
-            <th>Trọng Lượng</th>
-            <th>Đơn Giá</th>
-        </tr>
-        <?php foreach ($suaList as $sua): ?>
-        <tr>
-            <td><?= htmlspecialchars($sua['MASUA']); ?></td>
-            <td><?= htmlspecialchars($sua['TENSUA']); ?></td>
-            <td><?= htmlspecialchars($sua['HANGSUA']); ?></td>
-            <td><?= htmlspecialchars($sua['LOAISUA']); ?></td>
-            <td><?= htmlspecialchars($sua['TRONGLUONG']); ?></td>
-            <td><?= htmlspecialchars($sua['DONGIA']); ?></td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-
+<table>
+    <tr>
+        <th>Mã Sữa</th>
+        <th>Tên Sữa</th>
+        <th>Hãng Sữa</th>
+        <th>Loại Sữa</th>
+        <th>Trọng Lượng</th>
+        <th>Đơn Giá</th>
+        <th>Thao tác</th>
+    </tr>
+    <?php foreach ($suaList as $sua): ?>
+    <tr>
+        <td><?= htmlspecialchars($sua['MASUA']); ?></td>
+        <td><?= htmlspecialchars($sua['TENSUA']); ?></td>
+        <td><?= htmlspecialchars($sua['HANGSUA']); ?></td>
+        <td><?= htmlspecialchars($sua['LOAISUA']); ?></td>
+        <td><?= htmlspecialchars($sua['TRONGLUONG']); ?></td>
+        <td><?= htmlspecialchars($sua['DONGIA']); ?></td>
+        <td>
+            <a class="btn btn-warning" href="suasua.php?id=<?= urlencode($sua['MASUA']); ?>">✏️ Sửa</a>
+        </td>
+    </tr>
+    <?php endforeach; ?>
+</table>
     <div class="btn-container">
         <a href="tths.php" class="btn btn-primary">Trang Thông Tin HS</a>
         <a href="ttcacsp.php" class="btn btn-secondary">Thông tin các sản phẩm</a>
