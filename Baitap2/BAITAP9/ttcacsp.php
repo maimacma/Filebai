@@ -1,8 +1,5 @@
 <?php
-// ttsp.php (PHP logic)
-include 'connection.php';
-
-// Truy vấn lấy thông tin các sản phẩm sữa
+$conn =include 'connection.php';
 $sql = "SELECT * FROM sua";
 $sql1 = $conn->query($sql);
 $rs = $sql1->fetchAll(PDO::FETCH_ASSOC);
@@ -29,10 +26,10 @@ $rs = $sql1->fetchAll(PDO::FETCH_ASSOC);
             <?php
             foreach ($rs as $row) {
                 echo "<tr>";
-                echo "<td>" . htmlspecialchars($row['MASP']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['TENSP']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['GIA']) . "</td>";
-                echo "<td>" . htmlspecialchars($row['MAHS']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['MASUA']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TENSUA']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['TRONGLUONG']) . "</td>";
+                echo "<td>" . htmlspecialchars($row['DONGIA']) . "</td>";
                 echo "</tr>";
             }
             ?>

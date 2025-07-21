@@ -1,51 +1,123 @@
 <?php
 $conn = require_once 'connection.php';
-$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+$id = isset($_GET['id']) ? $_GET['id'] : '';
 $khachhang = null;
-if ($id > 0) {
-    $result = $conn->query("SELECT * FROM khachhang WHERE id = $id");
-    if ($result && $result->num_rows > 0) {
-        $khachhang = $result->fetch_assoc();
-    }
-}
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $ten = $conn->real_escape_string($_POST['ten']);
-    $diachi = $conn->real_escape_string($_POST['diachi']);
-    $email = $conn->real_escape_string($_POST['email']);
-    $sdt = $conn->real_escape_string($_POST['sdt']);
 
-    $sql = "UPDATE khachhang SET ten='$ten', diachi='$diachi', email='$email', sdt='$sdt' WHERE id=$id";
-    if ($conn->query($sql) === TRUE) {
-        echo "Cập nhật thành công!";
-        echo "<a href='danhsachkh.php'>Quay lại danh sách</a>";
+if (!empty($id)) {
+    $stmt = $conn->prepare("SELECT * FROM khachhang WHERE MAKH = ?");
+    $stmt->execute([$id]);
+    $khachhang = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $ten = $_POST['ten'] ?? '';
+    $gioitinh = $_POST['gioitinh'] ?? '';
+    $diachi = $_POST['diachi'] ?? '';
+    $sdt = $_POST['sdt'] ?? '';
+
+    $update = $conn->prepare("UPDATE khachhang SET TENKHACHHANG = ?, GIOITINH = ?, DIACHI = ?, SODIENTHOAI = ? WHERE MAKH = ?");
+    if ($update->execute([$ten, $gioitinh, $diachi, $sdt, $id])) {
+        echo "<p style='color:green; text-align:center'>Cập nhật thành công!</p>";
+        echo "<div style='text-align:center'><a href='danhsachkh.php'>Quay lại danh sách</a></div>";
         exit;
     } else {
-        echo "Lỗi: " . $conn->error;
+        echo "<p style='color:red'>Cập nhật thất bại.</p>";
     }
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="vi">
 <head>
+    <meta charset="UTF-8">
     <title>Cập nhật khách hàng</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to right, #dfe9f3, #ffffff);
+            margin: 0;
+            padding: 0;
+        }
+
+        .form-container {
+            width: 400px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: #0d6efd;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0b5ed7;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            text-decoration: none;
+            color: #0d6efd;
+        }
+    </style>
 </head>
 <body>
+ <div class="form-container">
     <h2>Cập nhật khách hàng</h2>
     <?php if ($khachhang): ?>
     <form method="post">
-        <label>Tên khách hàng:</label><br>
-        <input type="text" name="ten" value="<?php echo htmlspecialchars($khachhang['ten']); ?>" required><br>
-        <label>Địa chỉ:</label><br>
-        <input type="text" name="diachi" value="<?php echo htmlspecialchars($khachhang['diachi']); ?>" required><br>
-        <label>Email:</label><br>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($khachhang['email']); ?>" required><br>
-        <label>Số điện thoại:</label><br>
-        <input type="text" name="sdt" value="<?php echo htmlspecialchars($khachhang['sdt']); ?>" required><br><br>
+        <label>Tên khách hàng:</label>
+        <input type="text" name="ten" value="<?= htmlspecialchars($khachhang['TENKHACHHANG']) ?>" required>
+
+        <label>Giới tính:</label><br>
+        <input type="radio" name="gioitinh" value="NAM" <?= ($khachhang['GIOITINH'] === 'NAM') ? 'checked' : '' ?>> Nam
+        <input type="radio" name="gioitinh" value="NỮ" <?= ($khachhang['GIOITINH'] === 'NỮ') ? 'checked' : '' ?>> Nữ
+        <br><br>
+
+        <label>Địa chỉ:</label>
+        <input type="text" name="diachi" value="<?= htmlspecialchars($khachhang['DIACHI']) ?>" required>
+
+        <label>Số điện thoại:</label>
+        <input type="text" name="sdt" value="<?= htmlspecialchars($khachhang['SODIENTHOAI']) ?>" required>
+
         <input type="submit" value="Cập nhật">
     </form>
     <?php else: ?>
-        <p>Không tìm thấy khách hàng!</p>
+        <p style="text-align:center; color: red;">Không tìm thấy khách hàng!</p>
     <?php endif; ?>
+</div>
+
 </body>
 </html>
