@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $update = $conn->prepare("UPDATE khachhang SET TENKHACHHANG = ?, GIOITINH = ?, DIACHI = ?, SODIENTHOAI = ? WHERE MAKH = ?");
     if ($update->execute([$ten, $gioitinh, $diachi, $sdt, $id])) {
         echo "<p style='color:green; text-align:center'>Cập nhật thành công!</p>";
-        echo "<div style='text-align:center'><a href='danhsachkh.php'>Quay lại danh sách</a></div>";
+        echo "<div style='text-align:center'><a href='ttkh.php'>Quay lại danh sách</a></div>";
         exit;
     } else {
         echo "<p style='color:red'>Cập nhật thất bại.</p>";
