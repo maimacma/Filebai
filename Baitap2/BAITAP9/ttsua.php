@@ -1,8 +1,5 @@
 <?php
-// Phần PHP: Kết nối và lấy dữ liệu từ MySQL
-require_once 'connection.php';
-
-// Truy vấn lấy thông tin sữa
+$conn = require_once 'connection.php';
 $sql = "SELECT * FROM sua";
 $result = mysqli_query($conn, $sql);
 
