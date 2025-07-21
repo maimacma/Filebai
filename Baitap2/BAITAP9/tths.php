@@ -2,7 +2,7 @@
 $con = require_once 'connection.php';
 $dotim = "select * from HANGSUA";
 $dotim2 = $con->query($dotim);
-$dl = $dotim2->fetch_all(PDO::FETCH_ASSOC);
+$dl = $dotim2->FETCHALL(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
